@@ -62,42 +62,46 @@ const Home = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#0A3D62] to-[#1a5b8c] rounded-xl shadow-lg overflow-hidden mb-12">
-        <div className="container mx-auto px-6 py-16 lg:flex lg:items-center">
-          <div className="lg:w-1/2 text-white">
-            <h1 className="text-4xl font-bold mb-6 leading-tight">
-              Finn din neste opplevelse med Billettlyst
-            </h1>
-            <p className="text-lg mb-8 text-blue-100">
-              Konserter, sport, teater og mer - alt på ett sted. Vi har billetter til de beste arrangementene i Norge og Europa.
-            </p>
-            
-            <form onSubmit={handleSearch} className="relative max-w-md">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Søk etter arrangementer..."
-                className="w-full py-3 px-4 pl-12 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#FF7F50]"
-              />
-              <Search className="absolute left-4 top-3.5 text-gray-500 h-5 w-5" />
-              <button
-                type="submit"
-                className="absolute right-2 top-2 bg-[#FF7F50] hover:bg-[#FF6B4A] text-white rounded-full px-4 py-1.5 transition-colors"
-              >
-                Søk
-              </button>
-            </form>
-          </div>
-          <div className="hidden lg:block lg:w-1/2">
-            <img 
-              src="https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg" 
-              alt="Konsert" 
-              className="rounded-lg shadow-lg ml-auto transform translate-x-12"
-            />
-          </div>
-        </div>
-      </section>
+<section className="bg-gradient-to-r from-[#0A3D62] to-[#1a5b8c] rounded-xl shadow-lg overflow-hidden mb-12">
+  <div className="container mx-auto px-6 py-12 lg:py-16 flex flex-col lg:flex-row items-center max-h-[600px] lg:max-h-[500px]">
+    {/* Text Section */}
+    <div className="lg:w-1/2 text-white space-y-6">
+      <h1 className="text-3xl sm:text-4xl font-bold leading-tight">
+        Finn din neste opplevelse med Billettlyst
+      </h1>
+      <p className="text-lg text-blue-100">
+        Konserter, sport, teater og mer - alt på ett sted. Vi har billetter til de beste arrangementene i Norge og Europa.
+      </p>
+
+      <form onSubmit={handleSearch} className="relative max-w-md">
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Søk etter arrangementer..."
+          className="w-full py-3 px-4 pl-12 rounded-full text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#FF7F50]"
+        />
+        <Search className="absolute left-4 top-3.5 text-gray-500 h-5 w-5" />
+        <button
+          type="submit"
+          className="absolute right-2 top-2 bg-[#FF7F50] hover:bg-[#FF6B4A] text-white rounded-full px-4 py-1.5 transition-colors"
+        >
+          Søk
+        </button>
+      </form>
+    </div>
+
+    {/* Image Section */}
+    <div className="mt-10 lg:mt-0 lg:w-1/2 flex justify-end max-h-[400px]">
+      <img 
+        src="https://images.pexels.com/photos/1540406/pexels-photo-1540406.jpeg" 
+        alt="Konsert"
+        className="rounded-lg shadow-lg max-h-[400px] w-auto h-full object-cover"
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Search Results */}
       {searchResults.length > 0 && (
