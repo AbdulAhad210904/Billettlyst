@@ -14,7 +14,6 @@ interface EventCardProps {
 const EventCard = ({ event, isClickable = true, showWishlist = false }: EventCardProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  // Find the best image (prefer 16:9 ratio or the first available)
   const image = event.images?.find(img => img.ratio === '16_9' && img.width > 500) || 
                 event.images?.[0] || 
                 { url: 'https://via.placeholder.com/400x225?text=Ingen+Bilde' };
@@ -25,7 +24,7 @@ const EventCard = ({ event, isClickable = true, showWishlist = false }: EventCar
     : 'Ukjent sted';
   const formattedDate = event.dates?.start?.localDate ? formatDate(event.dates.start.localDate) : 'Dato ikke tilgjengelig';
 
-  const cardContent = (
+  return (
     <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
       <div className="relative h-48 overflow-hidden">
         <div className={`absolute inset-0 bg-gray-200 transition-opacity duration-300 ${isLoaded ? 'opacity-0' : 'opacity-100'}`}></div>
@@ -54,23 +53,22 @@ const EventCard = ({ event, isClickable = true, showWishlist = false }: EventCar
           <Calendar className="h-4 w-4 mr-1" />
           <span className="text-sm">{formattedDate}</span>
         </div>
-        <div className="flex items-center text-gray-600">
+        <div className="flex items-center text-gray-600 mb-4">
           <MapPin className="h-4 w-4 mr-1" />
           <span className="text-sm">{location}</span>
         </div>
+
+        {isClickable && (
+          <Link
+            to={`/event/${event.id}`}
+            className="inline-block bg-blue-600 text-white text-sm font-medium px-4 py-2 rounded hover:bg-blue-700 transition"
+          >
+            Les mer om {event.name}
+          </Link>
+        )}
       </div>
     </div>
   );
-
-  if (isClickable) {
-    return (
-      <Link to={`/event/${event.id}`} className="block group">
-        {cardContent}
-      </Link>
-    );
-  }
-
-  return cardContent;
 };
 
 export default EventCard;
