@@ -321,7 +321,6 @@ const EventDetails = () => {
 
                       <div className="mt-auto flex gap-2 pt-2">
                         <a
-                          href={pass.url || "#"}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="flex-1 bg-gray-800 hover:bg-gray-900 text-white text-center text-sm py-2 rounded-md"
